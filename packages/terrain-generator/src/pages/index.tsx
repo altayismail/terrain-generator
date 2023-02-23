@@ -15,18 +15,23 @@ export default function Home() {
   const width = 300;
   const height = 300;
   const [values, setValues] = useState<TerrainType[][]>([]);
+  const [permArray,setPermArray] = useState<number[]>([]);
   const [refresh, setRefresh] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleRefresh = (event: React.MouseEvent<HTMLButtonElement>) => {
     setIsLoading(true);
     event.preventDefault();
-    const values = generatePerlinValues(height, width);
-    setValues(values);
+    const {valuesArray,perm} = generatePerlinValues(height, width);
+    setValues(valuesArray);
+    setPermArray(perm)
     setRefresh(() => refresh + 1);
     console.log(refresh);
   };
-
+  
+  const handleGo = ()=>{
+    console.log(permArray)
+  }
   useEffect(() => {
     setIsLoading(false);
   },[values])
@@ -47,9 +52,10 @@ export default function Home() {
         </div>
         }
         <div className="flex flex-row">
-          <button className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+          {refresh !== 0 && <button onClick={handleGo} className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
             Go
-          </button>
+          </button> }
+          
           <button
             className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
             onClick={handleRefresh}

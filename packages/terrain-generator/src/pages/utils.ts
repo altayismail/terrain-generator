@@ -29,14 +29,14 @@ export function generatePerlin(height: number, width: number) {
       values.set(i, j, terrainIndex);
     }
   }
-  return values;
+  return {values:values,perm:perm};
 }
 
 export function generatePerlinValues(
   height: number,
   width: number
-): Array<Array<TerrainType>> {
-  let values: Array2D = generatePerlin(height, width);
+) {
+  let {values,perm} = generatePerlin(height, width);
   const intervalProcessor = new IntervalProcessor(values);
   intervalProcessor.createIntervals(3);
   intervalProcessor.fillHistogram();
@@ -58,5 +58,5 @@ export function generatePerlinValues(
     valuesArray.push(row);
   }
   console.log(intervals);
-  return valuesArray;
+  return {valuesArray,perm};
 }
