@@ -2,10 +2,10 @@ import { Inter } from "@next/font/google";
 import { Grid } from "./components/Grid";
 import { TerrainType } from "./types";
 import { generatePerlinValues } from "./utils";
-import { useState, useEffect } from "react";
-import MySpinner from './components/MySpinner';
-import MyHeader from './components/MyHeader';
-import MyModal from './components/MyModal';
+import { useState, useEffect, MouseEvent} from "react";
+import MySpinner from './components/ChakraComp/MySpinner';
+import MyHeader from './components/ChakraComp/MyHeader';
+import MyModal from './components/ChakraComp/MyModal';
 import { Button } from '@chakra-ui/react';
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,14 +18,13 @@ export default function Home() {
   const [refresh, setRefresh] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const handleRefresh = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleRefresh = (event: MouseEvent<HTMLButtonElement>) => {
     setIsLoading(true);
     event.preventDefault();
     const {valuesArray,perm} = generatePerlinValues(height, width);
     setValues(valuesArray);
     setPermArray(perm)
     setRefresh(() => refresh + 1);
-    console.log(refresh);
   };
   
   const handleGo = ()=>{
@@ -52,10 +51,10 @@ export default function Home() {
         <div className="flex flex-row mt-5">
           {refresh !== 0 && <>
             <MyModal />
-            <Button rounded="full" colorScheme="orange" ml="2" mb="2" p="5">Go</Button>
+            <Button isDisabled ={isLoading} rounded="full" colorScheme="orange" ml="2" mb="2" p="5">Go</Button>
           </>  
           }
-          <Button onClick={handleRefresh} rounded="full" colorScheme="orange" ml="2" mb="2" p="5">
+          <Button isDisabled={isLoading} onClick={handleRefresh} rounded="full" colorScheme="orange" ml="2" mb="2" p="5">
             {refresh === 0 ? "Generate" : "Refresh the Map"}
           </Button>
         </div>

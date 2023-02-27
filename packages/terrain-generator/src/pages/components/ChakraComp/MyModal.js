@@ -11,7 +11,7 @@ import {
   } from '@chakra-ui/react'
 import { InfoOutlineIcon } from '@chakra-ui/icons'
 
-function MyModal() {
+function MyModal(isDisabled) {
     const { isOpen, onOpen, onClose } = useDisclosure();
     
   return (
