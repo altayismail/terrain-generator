@@ -1,13 +1,12 @@
-import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "@next/font/google";
-import styles from "@/styles/Home.module.css";
-import { Grid, DataProp } from "./components/Grid";
+import { Grid } from "./components/Grid";
 import { TerrainType } from "./types";
-import { generateValues, generatePerlinValues } from "./utils";
+import { generatePerlinValues } from "./utils";
 import { useState, useEffect } from "react";
 import MySpinner from './components/MySpinner';
-
+import MyHeader from './components/MyHeader';
+import MyModal from './components/MyModal';
+import { Button } from '@chakra-ui/react';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,36 +31,33 @@ export default function Home() {
   const handleGo = ()=>{
     console.log(permArray)
   }
+
   useEffect(() => {
     setIsLoading(false);
   },[values])
 
   return (
     <>
-      <div className="flex flex-col justify-center items-center gap-y-20">
-        <h1 className="text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-          XWar Game Generator
-        </h1>
+      <div className="flex flex-col justify-center items-center">
+        <MyHeader />
         {
           isLoading === true ? 
           ( <MySpinner width={width}></MySpinner> ): 
           <div>
-          {refresh === 0 ? null : (
-            <Grid width={width} height={height} values={values} />
-          )}
-        </div>
+            {refresh === 0 ? null : (
+              <Grid width={width} height={height} values={values} />
+            )}
+          </div>
         }
-        <div className="flex flex-row">
-          {refresh !== 0 && <button onClick={handleGo} className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-            Go
-          </button> }
-          
-          <button
-            className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-            onClick={handleRefresh}
-          >
+        <div className="flex flex-row mt-5">
+          {refresh !== 0 && <>
+            <MyModal />
+            <Button rounded="full" colorScheme="orange" ml="2" mb="2" p="5">Go</Button>
+          </>  
+          }
+          <Button onClick={handleRefresh} rounded="full" colorScheme="orange" ml="2" mb="2" p="5">
             {refresh === 0 ? "Generate" : "Refresh the Map"}
-          </button>
+          </Button>
         </div>
       </div>
     </>
