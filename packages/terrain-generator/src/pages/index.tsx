@@ -11,8 +11,8 @@ import { Button } from '@chakra-ui/react';
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const width = 300;
-  const height = 300;
+  const width = 100;
+  const height = 100;
   const [values, setValues] = useState<TerrainType[][]>([]);
   const [permArray,setPermArray] = useState<number[]>([]);
   const [refresh, setRefresh] = useState<number>(0);
@@ -38,10 +38,9 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-col justify-center items-center">
-        <MyHeader />
         {
           isLoading === true ? 
-          ( <MySpinner width={width}></MySpinner> ): 
+          ( <MySpinner></MySpinner> ): 
           <div>
             {refresh === 0 ? null : (
               <Grid width={width} height={height} values={values} />

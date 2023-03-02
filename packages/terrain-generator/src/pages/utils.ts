@@ -23,8 +23,8 @@ export function generatePerlin(height: number, width: number) {
   const perm:number[] = makePermutation()
   let values: Array2D = new Array2D(height, width);
 
-  for (let i = 0; i < 300; i++) {
-    for (let j = 0; j < 300; j++) {
+  for (let i = 0; i < height; i++) {
+    for (let j = 0; j < width; j++) {
       const terrainIndex = noise2d(i * 0.01, j * 0.01,perm);
       values.set(i, j, terrainIndex);
     }

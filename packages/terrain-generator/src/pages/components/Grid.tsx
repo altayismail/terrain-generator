@@ -4,6 +4,7 @@ export type DataProp = {
   height: number;
   values: Array<Array<TerrainType>>;
 };
+
 export function Grid(data: DataProp) {
   const width = data.width;
   const height = data.height;
@@ -12,16 +13,18 @@ export function Grid(data: DataProp) {
   const columns = Array.from({ length: width }, (v, i) => i);
 
   return (
-    <div className="inline-grid p-2">
+    <div className="inline-grid" >
       {rows.map((row) => {
         return columns.map((column) => {
           return (
             <div
               key={`${column},${row}`}
-              className={`w-0.5 h-0.5 ${terrainToColor[values[column][row]]}`}
+              className={`${terrainToColor[values[column][row]]}`}
               style={{
-                gridColumn: column + 1,
+                gridColumn: column ,
                 gridRow: row + 1,
+                width:"7px",
+                height:"7px"
               }}
             ></div>
           );
