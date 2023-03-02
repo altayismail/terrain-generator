@@ -19,9 +19,9 @@ export function Grid(data: DataProp) {
           return (
             <div
               key={`${column},${row}`}
-              className={`${terrainToColor[values[column][row]]}`}
+              className={`${terrainToColor[values[row][column]]}`}
               style={{
-                gridColumn: column ,
+                gridColumn: column+1 ,
                 gridRow: row + 1,
                 width:"7px",
                 height:"7px"
