@@ -3,6 +3,7 @@ import {
   Array2D,
   colorInterval,
   IntervalProcessor,
+  terrainToColor
 } from "./types";
 import { makePermutation, noise2d } from "../perlin/perlin2d";
 export function generateValues(height: number, width: number) {
@@ -42,13 +43,14 @@ export function generatePerlinValues(
   intervalProcessor.fillHistogram();
   intervalProcessor.assignTerrain();
 
-  let valuesArray: Array<Array<TerrainType>> = [[]];
+  let valuesArray: Array<Array<TerrainType>> = [];
   const intervals: colorInterval[] = intervalProcessor.intervals;
 
   for (let i = 0; i < height; i++) {
     let row: Array<TerrainType> = [];
     for (let j = 0; j < width; j++) {
       const value = values.get(j, i);
+
       const TerrainIndex = intervals.forEach((interval) => {
         if (value >= interval.start && value < interval.finish) {
           row.push(interval.class);
@@ -57,6 +59,6 @@ export function generatePerlinValues(
     }
     valuesArray.push(row);
   }
-  console.log(intervals);
+
   return {valuesArray,perm};
 }

@@ -78,7 +78,7 @@ export class IntervalProcessor {
       throw new Error("Interval is already created");
     }
     const minValue = this.data.getMin();
-    const maxValue = this.data.getMax();
+    const maxValue = this.data.getMax() + 0.001;
 
     const intervalIncrement = (maxValue - minValue) / intervalNumber;
 
