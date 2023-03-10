@@ -1,4 +1,4 @@
-import { TerrainType, terrainToColor } from "../types";
+import { TerrainType, terrainToColor } from "../../../terrain-helper/types";
 export type DataProp = {
   width: number;
   height: number;
@@ -13,7 +13,7 @@ export function Grid(data: DataProp) {
   const columns = Array.from({ length: width }, (v, i) => i);
 
   return (
-    <div className="inline-grid" >
+    <div className="inline-grid border-8 border-black" >
       {rows.map((row) => {
         return columns.map((column) => {
           return (
@@ -21,7 +21,7 @@ export function Grid(data: DataProp) {
               key={`${column},${row}`}
               className={`${terrainToColor[values[row][column]]}`}
               style={{
-                gridColumn: column+1 ,
+                gridColumn: column + 1 ,
                 gridRow: row + 1,
                 width:"7px",
                 height:"7px"

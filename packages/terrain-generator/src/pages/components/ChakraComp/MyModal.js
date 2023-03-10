@@ -7,16 +7,16 @@ import {
     ModalBody,
     ModalCloseButton,
     useDisclosure,
-    IconButton
+    Button
   } from '@chakra-ui/react'
 import { InfoOutlineIcon } from '@chakra-ui/icons'
 
-function MyModal(isDisabled) {
+function MyModal() {
     const { isOpen, onOpen, onClose } = useDisclosure();
     
   return (
     <>
-      <IconButton rounded="full" colorScheme="orange" onClick={onOpen} aria-label='Search database' icon={<InfoOutlineIcon />} mb="2" p="5"/>
+      <Button border="solid" colorScheme="blackAlpha" width="200px" variant="ghost" textColor="white" onClick={onOpen} p="7">Terrain Info<InfoOutlineIcon ml="2"/></Button>
 
       <Modal isOpen={isOpen} onClose={onClose} size="xs">
         <ModalOverlay />

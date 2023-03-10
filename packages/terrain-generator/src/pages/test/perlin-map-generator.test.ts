@@ -1,4 +1,4 @@
-import { generatePerlinValues } from "../utils";
+import { generatePerlinValues } from "../../terrain-helper/utils";
 
 describe("Terrain Generation with Perlin Noise", () => {
   test("it should give the histogram", () => {

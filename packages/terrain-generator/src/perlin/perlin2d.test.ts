@@ -1,5 +1,5 @@
 import { noise2d } from "./perlin2d";
-import { Array2D } from "../pages/types";
+import { Array2D } from "../terrain-helper/types";
 
 describe("testing index file", () => {
   test("empty string should result in zero", () => {
