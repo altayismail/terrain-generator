@@ -1,10 +1,10 @@
-import {useState, useEffect, useContext, createContext} from 'react';
+import { useState, useEffect, useContext, createContext } from 'react';
 
 const TerrainContext = createContext();
 
-const TerrainProvider = ({children}) => {
-    const width = 100;
-    const height = 100;
+const TerrainProvider = ({ children }) => {
+    const width = 25;
+    const height = 25;
     const [values, setValues] = useState(null);
     const [permArray, setPermArray] = useState(null);
     const [refresh, setRefresh] = useState(0);
@@ -13,13 +13,13 @@ const TerrainProvider = ({children}) => {
     useEffect(() => {
         saveTerrain();
         setIsLoading(false);
-    },[values])
+    }, [values])
 
     useEffect(() => {
         const terrain = window.localStorage.getItem('terrain');
         setValues(JSON.parse(terrain));
         console.log(values);
-    },[]);
+    }, []);
 
     const saveTerrain = () => {
         window.localStorage.setItem('terrain', JSON.stringify(values));
@@ -43,4 +43,4 @@ const TerrainProvider = ({children}) => {
 
 const useTerrain = () => useContext(TerrainContext);
 
-export { TerrainProvider, useTerrain};
+export { TerrainProvider, useTerrain };

@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Chaquare</title>
+        <title>Chaquer | Terrain Generator</title>
       </Head>
       <Menu />
     </>
